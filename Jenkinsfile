@@ -4,26 +4,18 @@ pipeline {
         maven 'Maven_3_5_2'  
     }
    stages{
-      stage('Checkout') {
+    stage('CompileandRunSonarAnalysis') {
             steps {	
-                  git 'https://github.com/anacvxavier/jenkins-sonarcloud-sast.git'
+		sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=asgbuggywebapp -Dsonar.organization=asgbuggywebapp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=932558e169d66a8f1d1adf470b908a46156f5844'
 			}
-        } 
-      stage('Build'){
-            steps{
-                  sh 'mvn install'
-            }
-      }
-      stage('Test'){
-            steps{
-                  sh 'mvn test'
-            }
-      }
+    }
 
-    stage('SAST Scan') {
-            steps {	
-		sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=acvx01 -Dsonar.organization=acvx01 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=2d707c9262e6919a87fa77738fd6f11a1ba4b6af'
+	stage('RunSCAAnalysisUsingSnyk') {
+            steps {		
+				withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
+					sh 'mvn snyk:test -fn'
+				}
 			}
-        } 
+    }		
   }
 }
