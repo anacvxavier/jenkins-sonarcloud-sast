@@ -14,16 +14,7 @@ pipeline {
 					sh 'mvn snyk:test -fn'}
 			}
    }
-    stage('Build') { 
-            steps { 
-              withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {script{ p =  docker.build("acvx") }}
-            }
-    }
-   	stage('Push') {
-            steps {
-                docker.withRegistry('https://310877562977.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:aws-credentials') {app.push("latest")}
                 
-              } 
     }//daqui para baixo
 
 
