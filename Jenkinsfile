@@ -26,7 +26,7 @@ pipeline {
                }
             }
     }
-
+/*
 	stage('Push') {
             steps {
                 script{
@@ -36,7 +36,7 @@ pipeline {
                 }
               } 
     }//daqui para baixo
-
+*/
 
 
 
