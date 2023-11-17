@@ -17,7 +17,7 @@ pipeline {
 				}
 			}
    }
-
+/*
    stage('Build') { 
             steps { 
               withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
@@ -26,6 +26,7 @@ pipeline {
                }
             }
     }
+    */
 /*
 	stage('Push') {
             steps {
