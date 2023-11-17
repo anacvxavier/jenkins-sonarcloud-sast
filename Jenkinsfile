@@ -20,10 +20,8 @@ pipeline {
 
    stage('Build') { 
             steps { 
-               withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
-                 script{
-                 app =  docker.build("acvx")
-                 }
+          withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
+                 script{ app =  docker.build("acvx") }
                }
             }
     }
