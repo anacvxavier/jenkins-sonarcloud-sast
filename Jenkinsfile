@@ -14,9 +14,9 @@ pipeline {
 					sh 'mvn snyk:test -fn'}
 			}
    }
-                
-    }//daqui para baixo
+   
+}//daqui para baixo
 
 
 
-} //pipeline closure  
+ 
